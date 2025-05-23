@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lista de Presentes - Lucas & Marcela</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #ffe6f0; /* rosa claro */
+      color: #9b2c5a; /* rosa escuro */
+      margin: 0;
+    }
+    header {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #f8cce0; /* rosa claro mais forte */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Georgia', serif;
+    }
+    header p {
+      font-style: italic;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(155,44,90,0.2);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 330px;
+      position: relative;
+    }
+    .card img {
+      max-height: 140px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      border-radius: 0.3rem;
+      border: 1px solid #f8cce0;
+      background-color: #fff0f6;
+    }
+    .card h2 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      flex-grow: 1;
+      font-weight: 600;
+    }
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .card button {
+      background-color: #9b2c5a;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      flex: 1;
+      margin-right: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .card button:hover {
+      background-color: #7a2346;
+    }
+    .price {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #d6336c;
+      white-space: nowrap;
+      min-width: 70px;
+      text-align: right;
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(155,44,90,0.3);
+      position: relative;
+    }
+    .modal-content h3 {
+      margin-top: 0;
+      color: #9b2c5a;
+      font-family: 'Georgia', serif;
+    }
+    .modal-content a {
+      display: block;
+      background-color: #f8cce0;
+      color: #9b2c5a;
+      padding: 0.75rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(155,44,90,0.2);
+      transition: background-color 0.3s ease;
+    }
+    .modal-content a:hover {
+      background-color: #e2a8c6;
+    }
+    .modal-content button {
+      background-color: #9b2c5a;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .modal-content button:hover {
+      background-color: #7a2346;
+    }
+    .pix-section {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #9b2c5a;
+    }
+    .pix-code {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #d6336c;
+    }
+    .pix-qr {
+      margin-top: 1rem;
+      max-width: 180px;
+      max-height: 180px;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(155,44,90,0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lista de Presentes - Lucas & Marcela</h1>
+    <p>Escolha um presente especial para nosso casamento 💖</p>
+  </header>
+  <main class="grid" id="productGrid">
+    <!-- Produtos serão inseridos aqui -->
+  </main>
+
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+    <div class="modal-content">
+      <h3 id="modalTitle">Você escolheu:</h3>
+      <p id="productName"></p>
+      <a id="productLink" href="#" target="_blank" rel="noopener noreferrer">Presentear na loja</a>
+      <div class="pix-section">
+        <p>Ou envie para o pix do casal:</p>
+        <p class="pix-code">31975420407</p>
+        <img class="pix-qr" src="https://i.imgur.com/gNixVk7.png" alt="QR Code Pix Lucas e Marcela" />
+      </div>
+      <button onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { name: "Tábua mesa passar roupa portátil dobrável", url: "https://www.magazineluiza.com.br/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/p/ah4645a557/ud/udll/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 45,99", image: "https://a-static.mlcdn.com.br/800x560/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/smartaco/073/21b53f65b5b64747a24c35c9d6b84a36.jpeg" },
+      { name: "Jogo de copos de vidro quadrado (6pçs)", url: "https://www.magazineluiza.com.br/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/p/bgkkc7hbaj/ud/coco/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 39,90", image: "https://a-static.mlcdn.com.br/800x560/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/laborent/56gfsdd43d3/2a4d0cf2df7b67ef51a826ab20ea3153.jpeg" },
+
+      // Produtos adicionais que você pediu:
+      { name: "Kit 2 Travessas inox 20cm Hércules", url: "https://www.camicado.com.br/p/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/-/A-7010705305800-br.lc", price: "R$ 150,00", image: "https://static.camicado.com.br/produtos/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/7010705305800/1.jpg" },
+      { name: "Forma de Pudim Panelux Polida Classic 22", url: "https://www.camicado.com.br/p/forma-de-pudim-panelux-polida-classic-22/-/A-7010701312102-br.lc", price: "R$ 40,00", image: "https://static.camicado.com.br/produtos/forma-de-pudim-panelux-polida-classic-22/7010701312102/1.jpg" },
+      { name: "Assadeira Forma Alta para Pães Forninho 23x14x5 cm Jolly", url: "https://www.camicado.com.br/p/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/-/A-7010705616912-br.lc", price: "R$ 55,00", image: "https://static.camicado.com.br/produtos/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/7010705616912/1.jpg" },
+      { name: "Travessa Oval com Alça 20cm Porcelana Schmidt", url: "https://www.camicado.com.br/p/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/-/A-7010704906163-br.lc", price: "R$ 60,00", image: "https://static.camicado.com.br/produtos/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/7010704906163/1.jpg" },
+      { name: "Forma Alumínio Polido com Tubo MP Alumínio", url: "https://www.camicado.com.br/p/forma-aluminio-polido-com-tubo-mp-aluminio/-/A-7010703769758-br.lc", price: "R$ 30,00", image: "https://static.camicado.com.br/produtos/forma-aluminio-polido-com-tubo-mp-aluminio/7010703769758/1.jpg" },
+      { name: "Travessa de inox funda oval 29,5cm Hércules", url: "https://www.camicado.com.br/p/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/-/A-7010704443311-br.lc", price: "R$ 130,00", image: "https://static.camicado.com.br/produtos/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/7010704443311/1.jpg" },
+      { name: "Micro-ondas Philco 33 litros branco", url: "https://www.camicado.com.br/p/micro-ondas-philco-33-litros-branco-pmo38b-110v/-/A-7010705266940-br.lc", price: "R$ 650,00", image: "https://static.camicado.com.br/produtos/micro-ondas-philco-33-litros-branco-pmo38b-110v/7010705266940/1.jpg" },
+      { name: "Conjunto suporte de panelas 15, 20 e 25cm", url: "https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc", price: "R$ 80,00", image: "https://static.camicado.com.br/produtos/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/7010700422434/1.jpg" },
+
+      { name: "Jogo de copo de vidro diamante 6pçs", url: "https://www.magazineluiza.com.br/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/p/fh6d383jd3/ud/coas/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 54,90", image: "https://a-static.mlcdn.com.br/800x560/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/dharma/3d08df3dcfed4db8bbf9c33478fca124.jpg" },
+      { name: "Jogo de panelas Brinox 5 peças", url: "https://www.magazineluiza.com.br/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/p/af066018c4/ud/cjpn/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 559,00", image: "https://a-static.mlcdn.com.br/800x560/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/linho/8898c2b25cc17f878442f3c2767c5228.jpg" },
+      { name: "Liquidificador Mondial Turbo Power 550W", url: "https://www.magazineluiza.com.br/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/p/021756700/ep/lqac/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 149,00", image: "https://a-static.mlcdn.com.br/800x560/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/mondial/693ac30d52d7f2a50fdd4c345c28c797.jpg" },
+      { name: "Panela de pressão elétrica EOS Multicooker 5L", url: "https://www.magazineluiza.com.br/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/p/ba602caj05/ep/eppe/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 769,00", image: "https://a-static.mlcdn.com.br/800x560/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/eos/01092ab255eeaaed32a3d77ecac8600c.jpg" },
+      { name: "Máquina elétrica preparo pipocas saudáveis", url: "https://www.magazineluiza.com.br/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/p/cffe5c9bg2/ep/pipo/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 119,00", image: "https://a-static.mlcdn.com.br/800x560/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/pipo/013e973bf4ca04484a226fe103b7ae0a.jpg" },
+      { name: "Kit churrasco Tramontina 3 peças", url: "https://www.magazineluiza.com.br/kit-churrasco-tramontina-10239753-3-pecas/p/238299100/ud/cjxu/", price: "R$ 99,90", image: "https://a-static.mlcdn.com.br/800x560/kit-churrasco-tramontina-10239753-3-pecas/tramontina/cc7f9fa7c4178f33a75bdf6b5ff69d56.jpg" },
+      { name: "Forno elétrico 50 litros Philco", url: "https://www.magazineluiza.com.br/forno-eletrico-50-litros-philco-pfe52p-preto-220v/p/ehdjg7fe4b/ed/frne/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 399,90", image: "https://a-static.mlcdn.com.br/800x560/forno-eletrico-50-litros-philco-pfe52p-preto-220v/philco/7b4a0e54ae8f95a0316a32e45aa55f42.jpg" },
+      { name: "Cooktop Itatiaia 5 bocas vidro preto", url: "https://www.magazineluiza.com.br/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/p/ja6c0e5e64/ed/ck4b/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 999,00", image: "https://a-static.mlcdn.com.br/800x560/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt/itatiaia/3b2921cc71e54e9f9f14340fa36b5488.jpg" },
+      { name: "Sofá 2 lugares Gibran Linho Bronze", url: "https://www.magazineluiza.com.br/sofa-2-lugares-gibran-linho-bronze-viero-moveis/p/fgk9210a88/mo/esto/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 1.499,00", image: "https://a-static.mlcdn.com.br/800x560/sofa-2-lugares-gibran-linho-bronze-viero-moveis/viero/0dd7a671ae1e86a628bbcb0ccf54f06b.jpg" },
+      { name: "Rack para TV até 75 polegadas Logan", url: "https://www.magazineluiza.com.br/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/p/gjjd53j363/mo/racm/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 649,00", image: "https://a-static.mlcdn.com.br/800x560/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/mavaular/2139f56a576c4c38b85b7f4b20f0ca04.jpg" },
+      { name: "Jogo 6 xícaras chá com pires Cottage Relevo", url: "https://www.magazineluiza.com.br/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/p/fd095d4hbh/ud/cjxc/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 49,90", image: "https://a-static.mlcdn.com.br/800x560/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/germer/141505a6b6a5ca05f3d6c1ef47c5e73d.jpg" }
+    ];
+
+    const grid = document.getElementById('productGrid');
+    const modal = document.getElementById('productModal');
+    const productName = document.getElementById('productName');
+    const productLink = document.getElementById('productLink');
+
+    function openModal(product) {
+      productName.textContent = product.name;
+      productLink.href = product.url;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = product.name;
+
+      const name = document.createElement('h2');
+      name.textContent = product.name;
+
+      const bottomRow = document.createElement('div');
+      bottomRow.className = 'bottom-row';
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Presentear';
+      btn.addEventListener('click', () => openModal(product));
+
+      const price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = product.price;
+
+      bottomRow.appendChild(btn);
+      bottomRow.appendChild(price);
+
+      card.appendChild(img);
+      card.appendChild(name);
+      card.appendChild(bottomRow);
+
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
