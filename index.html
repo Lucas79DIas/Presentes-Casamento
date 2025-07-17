@@ -2,260 +2,411 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lista de Presentes - Lucas & Marcela</title>
   <style>
     body {
-      font-family: sans-serif;
-      background-color: #ffe6f0; /* rosa claro */
-      color: #9b2c5a; /* rosa escuro */
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
       margin: 0;
+      padding: 0;
+      color: #116308;
     }
     header {
+      background-color: #f8bbd0;
+      color: #116308;
+      padding: 2rem 1rem 1rem;
       text-align: center;
-      padding: 1.5rem;
-      background-color: #f8cce0; /* rosa claro mais forte */
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      font-family: 'Georgia', serif;
+      font-family: 'Script MT Bold', cursive;
+      color: #0e5217;
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff,
+                   -1px 1px 0 #fff, 1px 1px 0 #fff;
+      margin: 0;
+      font-size: 2.5rem;
     }
-    header p {
-      font-style: italic;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-    }
-    .card {
-      background-color: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 8px rgba(155,44,90,0.2);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 330px;
-      position: relative;
-    }
-    .card img {
-      max-height: 140px;
-      object-fit: contain;
-      margin-bottom: 0.5rem;
-      border-radius: 0.3rem;
-      border: 1px solid #f8cce0;
-      background-color: #fff0f6;
-    }
-    .card h2 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      flex-grow: 1;
-      font-weight: 600;
-    }
-    .bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.5rem;
-    }
-    .card button {
-      background-color: #9b2c5a;
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      border-radius: 0.375rem;
-      cursor: pointer;
-      flex: 1;
-      margin-right: 0.5rem;
-      transition: background-color 0.3s ease;
-    }
-    .card button:hover {
-      background-color: #7a2346;
-    }
-    .price {
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #d6336c;
-      white-space: nowrap;
-      min-width: 70px;
-      text-align: right;
-    }
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 1rem;
-    }
-    .modal-content {
-      background-color: white;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      width: 100%;
-      max-width: 420px;
+    .welcome {
       text-align: center;
-      box-shadow: 0 0 20px rgba(155,44,90,0.3);
-      position: relative;
+      font-size: 1.1rem;
+      margin: 1rem auto 2rem;
+      max-width: 800px;
+      padding: 0 1rem;
     }
-    .modal-content h3 {
-      margin-top: 0;
-      color: #9b2c5a;
-      font-family: 'Georgia', serif;
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
     }
-    .modal-content a {
-      display: block;
-      background-color: #f8cce0;
-      color: #9b2c5a;
-      padding: 0.75rem;
-      margin: 1rem 0;
-      border-radius: 0.5rem;
+    .gift-item {
+      border: 2px solid #f8bbd0;
+      border-radius: 16px;
+      padding: 1rem;
+      background-color: #fafafa;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    .gift-item img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+      border: 4px solid #f8bbd0;
+      margin-bottom: 1rem;
+    }
+    .gift-item h2 {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      color: #2e7d32;
+    }
+    .gift-item a {
+      color: #d81b60;
       text-decoration: none;
       font-weight: bold;
-      box-shadow: 0 2px 5px rgba(155,44,90,0.2);
-      transition: background-color 0.3s ease;
     }
-    .modal-content a:hover {
-      background-color: #e2a8c6;
-    }
-    .modal-content button {
-      background-color: #9b2c5a;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.375rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .modal-content button:hover {
-      background-color: #7a2346;
-    }
-    .pix-section {
-      margin-top: 1rem;
-      font-weight: 600;
-      color: #9b2c5a;
-    }
-    .pix-code {
+    .pix {
       margin-top: 0.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #d6336c;
+      font-size: 0.95rem;
     }
-    .pix-qr {
-      margin-top: 1rem;
-      max-width: 180px;
-      max-height: 180px;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 8px rgba(155,44,90,0.3);
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #888;
+      padding: 2rem 1rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Lista de Presentes - Lucas & Marcela</h1>
-    <p>Escolha um presente especial para nosso casamento 💖</p>
+    <h1>Lista de Presentes – Lucas & Marcela</h1>
   </header>
-  <main class="grid" id="productGrid">
-    <!-- Produtos serão inseridos aqui -->
-  </main>
 
-  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
-    <div class="modal-content">
-      <h3 id="modalTitle">Você escolheu:</h3>
-      <p id="productName"></p>
-      <a id="productLink" href="#" target="_blank" rel="noopener noreferrer">Presentear na loja</a>
-      <div class="pix-section">
-        <p>Ou envie para o pix do casal:</p>
-        <p class="pix-code">31975420407</p>
-        <img class="pix-qr" src="https://i.imgur.com/gNixVk7.png" alt="QR Code Pix Lucas e Marcela" />
-      </div>
-      <button onclick="closeModal()">Fechar</button>
-    </div>
+  <div class="welcome">
+    Aqui são apenas dicas de presentes para maior praticidade na sua escolha, por favor não se atentem a valores, sua presença no dia vale mais que qualquer presente 🥰
   </div>
 
-  <script>
-    const products = [
-      { name: "Tábua mesa passar roupa portátil dobrável", url: "https://www.magazineluiza.com.br/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/p/ah4645a557/ud/udll/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 45,99", image: "https://a-static.mlcdn.com.br/800x560/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/smartaco/073/21b53f65b5b64747a24c35c9d6b84a36.jpeg" },
-      { name: "Jogo de copos de vidro quadrado (6pçs)", url: "https://www.magazineluiza.com.br/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/p/bgkkc7hbaj/ud/coco/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 39,90", image: "https://a-static.mlcdn.com.br/800x560/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/laborent/56gfsdd43d3/2a4d0cf2df7b67ef51a826ab20ea3153.jpeg" },
+  <main>
+    <section class="gift-grid">
+      <!-- Presente 1 -->
+      <div class="gift-item">
+        <img src="https://images.tcdn.com.br/img/img_prod/681802/conjunto_para_banheiro_6_pecas_bambu_brinco_lixeira_escova_sanitaria_camicado_8459_1_f9bc84d17b155883cd7a3955f92acbc9.jpg" alt="Conjunto Banheiro Bambu 6 Peças">
+        <h2>Conjunto Banheiro Bambu 6 Peças</h2>
+        <p><a href="https://www.camicado.com.br/p/conjunto-banheiro-bambu-6-pecas-branco-plasvale-lixeira-65l-escova-sanitaria-acessorios-lavabo/-/A-7010704442487-br.lc" target="_blank">R$ 99,99</a></p>
+        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+      </div>
 
-      // Produtos adicionais que você pediu:
-      { name: "Kit 2 Travessas inox 20cm Hércules", url: "https://www.camicado.com.br/p/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/-/A-7010705305800-br.lc", price: "R$ 150,00", image: "https://static.camicado.com.br/produtos/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/7010705305800/1.jpg" },
-      { name: "Forma de Pudim Panelux Polida Classic 22", url: "https://www.camicado.com.br/p/forma-de-pudim-panelux-polida-classic-22/-/A-7010701312102-br.lc", price: "R$ 40,00", image: "https://static.camicado.com.br/produtos/forma-de-pudim-panelux-polida-classic-22/7010701312102/1.jpg" },
-      { name: "Assadeira Forma Alta para Pães Forninho 23x14x5 cm Jolly", url: "https://www.camicado.com.br/p/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/-/A-7010705616912-br.lc", price: "R$ 55,00", image: "https://static.camicado.com.br/produtos/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/7010705616912/1.jpg" },
-      { name: "Travessa Oval com Alça 20cm Porcelana Schmidt", url: "https://www.camicado.com.br/p/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/-/A-7010704906163-br.lc", price: "R$ 60,00", image: "https://static.camicado.com.br/produtos/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/7010704906163/1.jpg" },
-      { name: "Forma Alumínio Polido com Tubo MP Alumínio", url: "https://www.camicado.com.br/p/forma-aluminio-polido-com-tubo-mp-aluminio/-/A-7010703769758-br.lc", price: "R$ 30,00", image: "https://static.camicado.com.br/produtos/forma-aluminio-polido-com-tubo-mp-aluminio/7010703769758/1.jpg" },
-      { name: "Travessa de inox funda oval 29,5cm Hércules", url: "https://www.camicado.com.br/p/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/-/A-7010704443311-br.lc", price: "R$ 130,00", image: "https://static.camicado.com.br/produtos/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/7010704443311/1.jpg" },
-      { name: "Micro-ondas Philco 33 litros branco", url: "https://www.camicado.com.br/p/micro-ondas-philco-33-litros-branco-pmo38b-110v/-/A-7010705266940-br.lc", price: "R$ 650,00", image: "https://static.camicado.com.br/produtos/micro-ondas-philco-33-litros-branco-pmo38b-110v/7010705266940/1.jpg" },
-      { name: "Conjunto suporte de panelas 15, 20 e 25cm", url: "https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc", price: "R$ 80,00", image: "https://static.camicado.com.br/produtos/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/7010700422434/1.jpg" },
+      <!-- Presente 2 -->
+      <div class="gift-item">
+        <img src="https://static.camicado.com.br/storage/products/7010702142014/large.jpg" alt="Taça Água e Vinho Dominic – 6 peças">
+        <h2>Taça Água e Vinho Dominic – 6 peças</h2>
+        <p><a href="https://www.camicado.com.br/p/taca-agua-e-vinho-dominic-hauskraft-azul-borda-dourada-275-ml-6-pecas/-/A-7010702142014-br.lc" target="_blank">R$ 139,99</a></p>
+        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+      </div>
 
-      { name: "Jogo de copo de vidro diamante 6pçs", url: "https://www.magazineluiza.com.br/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/p/fh6d383jd3/ud/coas/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 54,90", image: "https://a-static.mlcdn.com.br/800x560/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/dharma/3d08df3dcfed4db8bbf9c33478fca124.jpg" },
-      { name: "Jogo de panelas Brinox 5 peças", url: "https://www.magazineluiza.com.br/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/p/af066018c4/ud/cjpn/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 559,00", image: "https://a-static.mlcdn.com.br/800x560/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/linho/8898c2b25cc17f878442f3c2767c5228.jpg" },
-      { name: "Liquidificador Mondial Turbo Power 550W", url: "https://www.magazineluiza.com.br/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/p/021756700/ep/lqac/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 149,00", image: "https://a-static.mlcdn.com.br/800x560/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/mondial/693ac30d52d7f2a50fdd4c345c28c797.jpg" },
-      { name: "Panela de pressão elétrica EOS Multicooker 5L", url: "https://www.magazineluiza.com.br/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/p/ba602caj05/ep/eppe/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 769,00", image: "https://a-static.mlcdn.com.br/800x560/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/eos/01092ab255eeaaed32a3d77ecac8600c.jpg" },
-      { name: "Máquina elétrica preparo pipocas saudáveis", url: "https://www.magazineluiza.com.br/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/p/cffe5c9bg2/ep/pipo/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 119,00", image: "https://a-static.mlcdn.com.br/800x560/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/pipo/013e973bf4ca04484a226fe103b7ae0a.jpg" },
-      { name: "Kit churrasco Tramontina 3 peças", url: "https://www.magazineluiza.com.br/kit-churrasco-tramontina-10239753-3-pecas/p/238299100/ud/cjxu/", price: "R$ 99,90", image: "https://a-static.mlcdn.com.br/800x560/kit-churrasco-tramontina-10239753-3-pecas/tramontina/cc7f9fa7c4178f33a75bdf6b5ff69d56.jpg" },
-      { name: "Forno elétrico 50 litros Philco", url: "https://www.magazineluiza.com.br/forno-eletrico-50-litros-philco-pfe52p-preto-220v/p/ehdjg7fe4b/ed/frne/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 399,90", image: "https://a-static.mlcdn.com.br/800x560/forno-eletrico-50-litros-philco-pfe52p-preto-220v/philco/7b4a0e54ae8f95a0316a32e45aa55f42.jpg" },
-      { name: "Cooktop Itatiaia 5 bocas vidro preto", url: "https://www.magazineluiza.com.br/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/p/ja6c0e5e64/ed/ck4b/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 999,00", image: "https://a-static.mlcdn.com.br/800x560/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt/itatiaia/3b2921cc71e54e9f9f14340fa36b5488.jpg" },
-      { name: "Sofá 2 lugares Gibran Linho Bronze", url: "https://www.magazineluiza.com.br/sofa-2-lugares-gibran-linho-bronze-viero-moveis/p/fgk9210a88/mo/esto/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 1.499,00", image: "https://a-static.mlcdn.com.br/800x560/sofa-2-lugares-gibran-linho-bronze-viero-moveis/viero/0dd7a671ae1e86a628bbcb0ccf54f06b.jpg" },
-      { name: "Rack para TV até 75 polegadas Logan", url: "https://www.magazineluiza.com.br/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/p/gjjd53j363/mo/racm/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 649,00", image: "https://a-static.mlcdn.com.br/800x560/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/mavaular/2139f56a576c4c38b85b7f4b20f0ca04.jpg" },
-      { name: "Jogo 6 xícaras chá com pires Cottage Relevo", url: "https://www.magazineluiza.com.br/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/p/fd095d4hbh/ud/cjxc/?partner_id=64068&utm_source=pdp&utm_medium=share", price: "R$ 49,90", image: "https://a-static.mlcdn.com.br/800x560/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/germer/141505a6b6a5ca05f3d6c1ef47c5e73d.jpg" }
-    ];
+      <!-- Presente 3 -->
+      <div class="gift-item">
+        <img src="https://static.camicado.com.br/storage/products/7010705065135/large.jpg" alt="Escorredor de Pratos Cinza">
+        <h2>Escorredor de Pratos Cinza</h2>
+        <p><a href="https://www.camicado.com.br/p/escorredor-de-pratos-loucas-pia-organizador-pratico-armarios-cinza/-/A-7010705065135-br.lc" target="_blank">R$ 79,99</a></p>
+        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+      </div>
 
-    const grid = document.getElementById('productGrid');
-    const modal = document.getElementById('productModal');
-    const productName = document.getElementById('productName');
-    const productLink = document.getElementById('productLink');
+      <!-- Presente 4 -->
+      <div class="gift-item">
+        <img src="https://static.camicado.com.br/storage/products/100881028/large.jpg" alt="Jogo Faqueiro Home Style Utile – 16 peças">
+        <h2>Jogo Faqueiro Home Style Utile – 16 peças</h2>
+        <p><a href="https://www.camicado.com.br/p/jogo-faqueiro-home-style-utile-16-pecas/-/A-100881028-br.lc" target="_blank">R$ 129,99</a></p>
+        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+      </div>
 
-    function openModal(product) {
-      productName.textContent = product.name;
-      productLink.href = product.url;
-      modal.style.display = 'flex';
-      modal.setAttribute('aria-hidden', 'false');
-    }
-    function closeModal() {
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-    }
+      <!-- Presente 5 -->
+      <div class="gift-item">
+        <img src="https://static.camicado.com.br/storage/products/101019261/large.jpg" alt="Caçarola Baixa Home Style Piemonte 28cm">
+        <h2>Caçarola Baixa Home Style Piemonte 28cm</h2>
+        <p><a href="https://www.camicado.com.br/p/cacarola-baixa-home-style-piemonte-28-cm/-/A-101019261-br.lc" target="_blank">R$ 219,99</a></p>
+        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+      </div>
+      <!-- Presente 6 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/101039174/large.jpg" alt="Panela de Pressão Tramontina Vancouver Effect">
+  <h2>Panela de Pressão Tramontina Vancouver Effect</h2>
+  <p><a href="https://www.camicado.com.br/p/panela-de-pressao-tramontina-vancouver-effect/-/A-101039174-br.lc" target="_blank">R$ 349,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-    products.forEach(product => {
-      const card = document.createElement('div');
-      card.className = 'card';
+<!-- Presente 7 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/300054485/large.jpg" alt="Jogo de Panelas Tognana Stone Wood">
+  <h2>Jogo de Panelas Tognana Stone Wood</h2>
+  <p><a href="https://www.camicado.com.br/p/jogo-de-panelas-tognana-stone-wood/-/A-300054485-br.lc" target="_blank">R$ 479,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      const img = document.createElement('img');
-      img.src = product.image;
-      img.alt = product.name;
+<!-- Presente 8 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/100758484/large.jpg" alt="Jogo de Luva e Descanso de Panela Home Style Stripes">
+  <h2>Jogo de Luva e Descanso de Panela Home Style Stripes</h2>
+  <p><a href="https://www.camicado.com.br/p/jogo-de-luva-e-descanso-de-panela-home-style-stripes/-/A-100758484-br.lc" target="_blank">R$ 89,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      const name = document.createElement('h2');
-      name.textContent = product.name;
+<!-- Presente 9 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010705187465/large.jpg" alt="Garrafa Térmica de Café Laradore Chic Branca e Dourada 1L">
+  <h2>Garrafa Térmica de Café Laradore Chic Branca e Dourada 1L</h2>
+  <p><a href="https://www.camicado.com.br/p/garrafa-termica-de-cafe-laradore-chic-branca-e-dourada-1l/-/A-7010705187465-br.lc" target="_blank">R$ 129,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      const bottomRow = document.createElement('div');
-      bottomRow.className = 'bottom-row';
+<!-- Presente 10 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/101174595/large.jpg" alt="Jarra Flut">
+  <h2>Jarra Flut</h2>
+  <p><a href="https://www.camicado.com.br/p/jarra-flut/-/A-101174595-br.lc" target="_blank">R$ 59,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      const btn = document.createElement('button');
-      btn.textContent = 'Presentear';
-      btn.addEventListener('click', () => openModal(product));
+<!-- Presente 11 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/101307482/large.jpg" alt="Jarra Home Style New Gaelle">
+  <h2>Jarra Home Style New Gaelle</h2>
+  <p><a href="https://www.camicado.com.br/p/jarra-home-style-new-gaelle/-/A-101307482-br.lc" target="_blank">R$ 79,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+<!-- Presente 12 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010700422434/large.jpg" alt="Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm">
+  <h2>Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm</h2>
+  <p><a href="https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc" target="_blank">R$ 89,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      const price = document.createElement('div');
-      price.className = 'price';
-      price.textContent = product.price;
+<!-- Presente 13 (mesmo item repetido) -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010700422434/large.jpg" alt="Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm">
+  <h2>Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm</h2>
+  <p><a href="https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc" target="_blank">R$ 89,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      bottomRow.appendChild(btn);
-      bottomRow.appendChild(price);
+<!-- Presente 14 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010704443311/large.jpg" alt="Travessa de Inox Funda Oval 29,5cm Baixela Grande para Servir Porções Saladas Massas Hercules">
+  <h2>Travessa de Inox Funda Oval 29,5cm Baixela Grande para Servir</h2>
+  <p><a href="https://www.camicado.com.br/p/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/-/A-7010704443311-br.lc" target="_blank">R$ 149,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      card.appendChild(img);
-      card.appendChild(name);
-      card.appendChild(bottomRow);
+<!-- Presente 15 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010703769758/large.jpg" alt="Forma Alumínio Polido com Tubo MP Alumínio">
+  <h2>Forma Alumínio Polido com Tubo MP Alumínio</h2>
+  <p><a href="https://www.camicado.com.br/p/forma-aluminio-polido-com-tubo-mp-aluminio/-/A-7010703769758-br.lc" target="_blank">R$ 79,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
 
-      grid.appendChild(card);
-    });
-  </script>
+<!-- Presente 16 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010704906163/large.jpg" alt="Travessa Oval com Alça 20cm Porcelana Schmidt Mod Calorama">
+  <h2>Travessa Oval com Alça 20cm Porcelana Schmidt Mod Calorama</h2>
+  <p><a href="https://www.camicado.com.br/p/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/-/A-7010704906163-br.lc" target="_blank">R$ 69,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 17 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010705616912/large.jpg" alt="Assadeira Forma Alta para Pães Forninho e Forno Elétrico 23x14x5cm Jolly">
+  <h2>Assadeira Forma Alta para Pães Forninho e Forno Elétrico 23x14x5cm Jolly</h2>
+  <p><a href="https://www.camicado.com.br/p/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/-/A-7010705616912-br.lc" target="_blank">R$ 79,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 18 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010701312102/large.jpg" alt="Forma de Pudim Panelux Polida Classic 22">
+  <h2>Forma de Pudim Panelux Polida Classic 22</h2>
+  <p><a href="https://www.camicado.com.br/p/forma-de-pudim-panelux-polida-classic-22/-/A-7010701312102-br.lc" target="_blank">R$ 59,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 19 -->
+<div class="gift-item">
+  <img src="https://static.camicado.com.br/storage/products/7010705305800/large.jpg" alt="Kit 2 Travessas Inox 20cm Hercules Baixelas Fundas Ovais Servir Saladas Porções">
+  <h2>Kit 2 Travessas Inox 20cm Hercules Baixelas Fundas Ovais Servir Saladas Porções</h2>
+  <p><a href="https://www.camicado.com.br/p/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/-/A-7010705305800-br.lc" target="_blank">R$ 159,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 20 -->
+<div class="gift-item">
+  <img src="https://img.ibxk.com.br/2018/09/06/06143556594522.jpg" alt="Jogo 6 Xícaras Chá com Pires Cottage Relevo Porcelana Germer">
+  <h2>Jogo 6 Xícaras Chá com Pires Cottage Relevo Porcelana Germer</h2>
+  <p><a href="https://www.magazineluiza.com.br/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/p/fd095d4hbh/ud/cjxc/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 21 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/mavaular/204440426/50326ec3c4a4e6e0c71fdb1b3b248e7b.jpg" alt="Rack para TV até 75 polegadas 100% MDF Ripado 2 Portas Logan Mavaular">
+  <h2>Rack para TV até 75 polegadas 100% MDF Ripado 2 Portas Logan Mavaular</h2>
+  <p><a href="https://www.magazineluiza.com.br/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/p/gjjd53j363/mo/racm/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 22 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/sofa-2-lugares-gibran-linho-bronze-viero-moveis/fvgstore/305307/bd8ee8ecb4e423aa3153a6c4b8f82571.jpg" alt="Sofá 2 Lugares Gibran Linho Bronze Viero Móveis">
+  <h2>Sofá 2 Lugares Gibran Linho Bronze Viero Móveis</h2>
+  <p><a href="https://www.magazineluiza.com.br/sofa-2-lugares-gibran-linho-bronze-viero-moveis/p/fgk9210a88/mo/esto/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 23 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt/a_madeirados/458063/09bf17b1d14d9a3a5d567e91406bf1db.jpg" alt="Cooktop Itatiaia Essencial 5 Bocas Vidro Preto Bivolt">
+  <h2>Cooktop Itatiaia Essencial 5 Bocas Vidro Preto Bivolt</h2>
+  <p><a href="https://www.magazineluiza.com.br/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/p/ja6c0e5e64/ed/ck4b/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 24 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/forno-eletrico-50-litros-philco-pfe52p-preto-220v/lojadomeu/preto-pfe52p-220v/7384217a16f6bf6586c5480d5bb89ca0.jpg" alt="Forno Elétrico 50 Litros Philco PFE52P Preto 220V">
+  <h2>Forno Elétrico 50 Litros Philco PFE52P Preto 220V</h2>
+  <p><a href="https://www.magazineluiza.com.br/forno-eletrico-50-litros-philco-pfe52p-preto-220v/p/ehdjg7fe4b/ed/frne/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 25 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/kit-churrasco-tramontina-10239753-3-pecas/lojaferro/kit-churrasco-tramontina-10239753-3-pecas/8163b0a0d0e7a9f192c6ec2bc029db8b.jpg" alt="Kit Churrasco Tramontina 10239753 3 Peças">
+  <h2>Kit Churrasco Tramontina 10239753 3 Peças</h2>
+  <p><a href="https://www.magazineluiza.com.br/kit-churrasco-tramontina-10239753-3-pecas/p/238299100/ud/cjxu/" target="_blank">Consultar preço</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+<!-- Presente 26 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/maquina-de-pipoca/..." alt="Máquina Elétrica de Pipoca">
+  <h2>Máquina Elétrica de Pipoca</h2>
+  <p><a href="https://www.magazineluiza.com.br/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/p/cffe5c9bg2/ep/pipo/" target="_blank">R$ 291,60</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 27 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/panela-de-pressao-eos/..." alt="Panela de Pressão Elétrica EOS Multicooker 5 L">
+  <h2>Panela de Pressão Elétrica EOS Multicooker 5 L Titanium</h2>
+  <p><a href="https://www.magazineluiza.com.br/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/p/ba602caj05/ep/eppe/" target="_blank">R$ 376,53</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 28 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/liquidificador-mondial/..." alt="Liquidificador Mondial Turbo Power L‑99 FB">
+  <h2>Liquidificador Mondial Turbo Power L‑99 FB</h2>
+  <p><a href="https://www.magazineluiza.com.br/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/p/021756700/ep/lqac/" target="_blank">R$ 127,90</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 29 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/jogo-panelas-brinox/..." alt="Jogo de Panelas Brinox Ceramic Life Gris 5 peças">
+  <h2>Jogo de Panelas Brinox Ceramic Life Gris – 5 peças</h2>
+  <p><a href="https://www.magazineluiza.com.br/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/p/af066018c4/ud/cjpn/" target="_blank">R$ 599,88</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 30 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/jogo-copos-diamond/..." alt="Jogo de Copos Diamond 6 peças">
+  <h2>Jogo de Copos Diamond – 6 peças</h2>
+  <p><a href="https://www.magazineluiza.com.br/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/p/fh6d383jd3/ud/coas/" target="_blank">R$ 45,66</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 31 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/panela-pressao-electrolux/..." alt="Panela de Pressão Elétrica Electrolux PCE20 5 L">
+  <h2>Panela de Pressão Elétrica Electrolux PCE20 5 L</h2>
+  <p><a href="https://www.magazineluiza.com.br/panela-de-pressao-eletrica-electrolux-pce20-900w-5l-timer-controle-de-temperatura/p/023328400/ep/eppe/" target="_blank">R$ 389,90</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 32 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/air-fryer-mondial/..." alt="Air Fryer Mondial Oven AFON 12 L">
+  <h2>Air Fryer Mondial Oven AFON 12 L</h2>
+  <p><a href="https://www.magazineluiza.com.br/air-fryer-mondial-forno-oven-afon-12l-bi-preta-12l/p/237219400/ep/efso/" target="_blank">R$ 569,05</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 33 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/aparelho-jantar-tramontina/..." alt="Aparelho Jantar Tramontina 6 Peças">
+  <h2>Aparelho de Jantar Tramontina 6 peças</h2>
+  <p><a href="https://www.magazineluiza.com.br/aparelho-jogo-de-jantar-pratos-porcelana-branco-tramontina-6-pecas/p/edc3aga9hf/ud/apja/" target="_blank">R$ 121,79</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+<!-- Presente 34 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/batedeira-britania-bbpe01/..." alt="Batedeira Planetária Britânia BBPE01 4 L">
+  <h2>Batedeira Planetária Britânia BBPE01 12 Velocidades 4 L</h2>
+  <p><a href="https://www.magazineluiza.com.br/batedeira-planetaria-britania-bbpe01-12-velocidades-4l-500w/p/chg9451egc/ep/bapl/" target="_blank">R$ 436,50 (Pix)</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 35 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/copos-quadrados-ame/..." alt="Copo de Vidro Quadrado Ame Cozinha 6 pçs">
+  <h2>Copo de Vidro Quadrado Ame Cozinha – Jogo 6 pçs</h2>
+  <p><a href="https://www.magazineluiza.com.br/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/p/bgkkc7hbaj/ud/coco/" target="_blank">R$ 159,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 36 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/kit-americano-souplats/..." alt="Kit Jogo Americano 12 pç Souplats Mr Dias">
+  <h2>Kit Jogo Americano 12 peças Souplats Mr Dias</h2>
+  <p><a href="https://www.magazineluiza.com.br/kit-jogo-americano-12pc-souplats-mesa-posta-guardanapo-supla-mr-dias/p/jegd3dd0bb/ud/joam/" target="_blank">R$ 113,91 (Pix)</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 37 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/tabua-passar-smartaco/..." alt="Tábua de Passar Roupa Portátil Dobrável SmartAço">
+  <h2>Tábua de Passar Roupa Portátil Dobrável SmartAço</h2>
+  <p><a href="https://www.magazineluiza.com.br/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/p/ah4645a557/ud/udll/" target="_blank">R$ 74,96 (Pix)</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+<!-- Presente 38 -->
+<div class="gift-item">
+  <img src="https://images.casasbahia.com.br/55066928/..." alt="Smart TV LED 50” Ultra HD 4K Philips 50PUG7019">
+  <h2>Smart TV LED 50” Ultra HD 4K Philips 50PUG7019</h2>
+  <p><a href="https://www.casasbahia.com.br/smart-tv-led-50-ultra-hd-4k-philips-50pug7019-com-google-tv-comando-de-voz-wi-fi-entradas-hdmi-e-usb/p/55066928" target="_blank">R$ Consultar</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+<!-- Presente 39 -->
+<div class="gift-item">
+  <img src="https://images-na.ssl-images-amazon.com/images/I/B0DBMX3P7P.jpg" alt="Vassoura Cabo Rodo Duplo Grande">
+  <h2>Vassoura Cabo Rodo Duplo Grande</h2>
+  <p><a href="https://www.amazon.com.br/Vassoura-Cabo-Rodo-Duplo-Grande/dp/B0DBMX3P7P/" target="_blank">R$ Consultar</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+<!-- Presente 40 -->
+<div class="gift-item">
+  <img src="https://a-static.mlcdn.com.br/1500x1500/toalhas-teka-dry/..." alt="Jogo de Toalhas 4 Peças Teka Dry 100% Algodão">
+  <h2>Jogo de Toalhas 4 peças Teka Dry Algodão</h2>
+  <p><a href="https://www.magazineluiza.com.br/jogo-de-toalhas-4-pecas-teka-dry-100-algodao/p/cge71c5cbj/cm/joto/" target="_blank">R$ Consultar</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    Com carinho, Lucas & Marcela 💕
+  </footer>
 </body>
 </html>
