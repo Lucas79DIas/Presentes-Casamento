@@ -85,20 +85,52 @@
   <div class="welcome">
     Aqui são apenas dicas de presentes para maior praticidade na sua escolha, por favor não se atentem a valores, sua presença no dia vale mais que qualquer presente 🥰
   </div>
+  
+  <div style="text-align:center; margin-top: 1rem;">
+  <button onclick="ordenarPorPreco()" style="background-color:#f8bbd0; border:none; padding:10px 20px; border-radius:10px; color:#116308; font-weight:bold; cursor:pointer;">
+    Ordenar por Preço
+  </button>
+</div>
 
+<script>
+  function extrairPreco(texto) {
+    const match = texto.replace('R$', '').replace('R$ ', '').replace('R$', '').replace(',', '.').match(/[\d.]+/g);
+    return match ? parseFloat(match.join('')) : Infinity;
+  }
+
+  function ordenarPorPreco() {
+    const grid = document.querySelector('.gift-grid');
+    const itens = Array.from(grid.querySelectorAll('.gift-item'));
+
+    itens.sort((a, b) => {
+      const precoA = extrairPreco(a.querySelector('p a').textContent);
+      const precoB = extrairPreco(b.querySelector('p a').textContent);
+      return precoA - precoB;
+    });
+
+    // Limpa e reinsere ordenado
+    grid.innerHTML = '';
+    itens.forEach(item => grid.appendChild(item));
+  }
+</script>
+  
   <main>
-    <section class="gift-grid">
-      <!-- Presente 1 -->
-      <div class="gift-item">
-        <img src="https://images.tcdn.com.br/img/img_prod/681802/conjunto_para_banheiro_6_pecas_bambu_brinco_lixeira_escova_sanitaria_camicado_8459_1_f9bc84d17b155883cd7a3955f92acbc9.jpg" alt="Conjunto Banheiro Bambu 6 Peças">
-        <h2>Conjunto Banheiro Bambu 6 Peças</h2>
-        <p><a href="https://www.camicado.com.br/p/conjunto-banheiro-bambu-6-pecas-branco-plasvale-lixeira-65l-escova-sanitaria-acessorios-lavabo/-/A-7010704442487-br.lc" target="_blank">R$ 99,99</a></p>
-        <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
-      </div>
 
+    <section class="gift-grid">
+<!-- Presente 1 -->
+<div class="gift-item">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/5593/7010704442487/7510709159817/0.jpeg" alt="Conjunto Banheiro Bambu 6 Peças">
+  <h2>
+    <a href="https://www.camicado.com.br/p/conjunto-banheiro-bambu-6-pecas-branco-plasvale-lixeira-65l-escova-sanitaria-acessorios-lavabo/-/A-7010704442487-br.lc" target="_blank">
+      Conjunto Banheiro Bambu 6 Peças
+    </a>
+  </h2>
+  <p><a href="https://www.camicado.com.br/p/conjunto-banheiro-bambu-6-pecas-branco-plasvale-lixeira-65l-escova-sanitaria-acessorios-lavabo/-/A-7010704442487-br.lc" target="_blank">R$ 99,99</a></p>
+  <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
+</div>
       <!-- Presente 2 -->
       <div class="gift-item">
-        <img src="https://static.camicado.com.br/storage/products/7010702142014/large.jpg" alt="Taça Água e Vinho Dominic – 6 peças">
+        <img src="https://imgmarketplace.lojasrenner.com.br/20000/3994/7010702142014/7510704608349/0.jpeg" alt="Taça Água e Vinho Dominic – 6 peças">
         <h2>Taça Água e Vinho Dominic – 6 peças</h2>
         <p><a href="https://www.camicado.com.br/p/taca-agua-e-vinho-dominic-hauskraft-azul-borda-dourada-275-ml-6-pecas/-/A-7010702142014-br.lc" target="_blank">R$ 139,99</a></p>
         <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -106,7 +138,7 @@
 
       <!-- Presente 3 -->
       <div class="gift-item">
-        <img src="https://static.camicado.com.br/storage/products/7010705065135/large.jpg" alt="Escorredor de Pratos Cinza">
+        <img src="https://imgmarketplace.lojasrenner.com.br/20000/2298/7010705065135/7510710640910/0.jpeg" alt="Escorredor de Pratos Cinza">
         <h2>Escorredor de Pratos Cinza</h2>
         <p><a href="https://www.camicado.com.br/p/escorredor-de-pratos-loucas-pia-organizador-pratico-armarios-cinza/-/A-7010705065135-br.lc" target="_blank">R$ 79,99</a></p>
         <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -114,7 +146,7 @@
 
       <!-- Presente 4 -->
       <div class="gift-item">
-        <img src="https://static.camicado.com.br/storage/products/100881028/large.jpg" alt="Jogo Faqueiro Home Style Utile – 16 peças">
+        <img src="https://img.camicado.com.br/item/100881036/zoom/1.jpg" alt="Jogo Faqueiro Home Style Utile – 16 peças">
         <h2>Jogo Faqueiro Home Style Utile – 16 peças</h2>
         <p><a href="https://www.camicado.com.br/p/jogo-faqueiro-home-style-utile-16-pecas/-/A-100881028-br.lc" target="_blank">R$ 129,99</a></p>
         <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -122,14 +154,14 @@
 
       <!-- Presente 5 -->
       <div class="gift-item">
-        <img src="https://static.camicado.com.br/storage/products/101019261/large.jpg" alt="Caçarola Baixa Home Style Piemonte 28cm">
+        <img src="https://img.camicado.com.br/item/101019270/zoom/1.jpg" alt="Caçarola Baixa Home Style Piemonte 28cm">
         <h2>Caçarola Baixa Home Style Piemonte 28cm</h2>
         <p><a href="https://www.camicado.com.br/p/cacarola-baixa-home-style-piemonte-28-cm/-/A-101019261-br.lc" target="_blank">R$ 219,99</a></p>
         <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
       </div>
       <!-- Presente 6 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/101039174/large.jpg" alt="Panela de Pressão Tramontina Vancouver Effect">
+  <img src="https://img.camicado.com.br/item/101039182/zoom/1.jpg" alt="Panela de Pressão Tramontina Vancouver Effect">
   <h2>Panela de Pressão Tramontina Vancouver Effect</h2>
   <p><a href="https://www.camicado.com.br/p/panela-de-pressao-tramontina-vancouver-effect/-/A-101039174-br.lc" target="_blank">R$ 349,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -137,7 +169,7 @@
 
 <!-- Presente 7 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/300054485/large.jpg" alt="Jogo de Panelas Tognana Stone Wood">
+  <img src="https://img.camicado.com.br/item/000000000000054485/zoom/1.jpg" alt="Jogo de Panelas Tognana Stone Wood">
   <h2>Jogo de Panelas Tognana Stone Wood</h2>
   <p><a href="https://www.camicado.com.br/p/jogo-de-panelas-tognana-stone-wood/-/A-300054485-br.lc" target="_blank">R$ 479,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -145,7 +177,7 @@
 
 <!-- Presente 8 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/100758484/large.jpg" alt="Jogo de Luva e Descanso de Panela Home Style Stripes">
+  <img src="https://img.camicado.com.br/item/100758492/zoom/1.jpg" alt="Jogo de Luva e Descanso de Panela Home Style Stripes">
   <h2>Jogo de Luva e Descanso de Panela Home Style Stripes</h2>
   <p><a href="https://www.camicado.com.br/p/jogo-de-luva-e-descanso-de-panela-home-style-stripes/-/A-100758484-br.lc" target="_blank">R$ 89,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -153,7 +185,7 @@
 
 <!-- Presente 9 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010705187465/large.jpg" alt="Garrafa Térmica de Café Laradore Chic Branca e Dourada 1L">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/6223/7010705187465/7510710934066/0.jpeg" alt="Garrafa Térmica de Café Laradore Chic Branca e Dourada 1L">
   <h2>Garrafa Térmica de Café Laradore Chic Branca e Dourada 1L</h2>
   <p><a href="https://www.camicado.com.br/p/garrafa-termica-de-cafe-laradore-chic-branca-e-dourada-1l/-/A-7010705187465-br.lc" target="_blank">R$ 129,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -161,7 +193,7 @@
 
 <!-- Presente 10 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/101174595/large.jpg" alt="Jarra Flut">
+  <img src="https://img.camicado.com.br/item/101174608/zoom/1.jpg" alt="Jarra Flut">
   <h2>Jarra Flut</h2>
   <p><a href="https://www.camicado.com.br/p/jarra-flut/-/A-101174595-br.lc" target="_blank">R$ 59,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -169,70 +201,70 @@
 
 <!-- Presente 11 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/101307482/large.jpg" alt="Jarra Home Style New Gaelle">
+  <img src="https://img.camicado.com.br/item/101307491/zoom/1.jpg" alt="Jarra Home Style New Gaelle">
   <h2>Jarra Home Style New Gaelle</h2>
   <p><a href="https://www.camicado.com.br/p/jarra-home-style-new-gaelle/-/A-101307482-br.lc" target="_blank">R$ 79,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 <!-- Presente 12 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010700422434/large.jpg" alt="Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/2298/7010700422434/7510700652585/0.jpg" alt="Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm">
   <h2>Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm</h2>
   <p><a href="https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc" target="_blank">R$ 89,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
-<!-- Presente 13 (mesmo item repetido) -->
+<!-- Presente 13 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010700422434/large.jpg" alt="Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/6239/7010705211706/7510711030996/0.jpeg?ims=fit-in/x566" alt="4 Taças para Cappuccino Wolff Lines de Vidro">
   <h2>Conjunto Suporte de Panelas nos Tamanhos 15, 20 e 25cm</h2>
-  <p><a href="https://www.camicado.com.br/p/conjunto-suporte-de-panelas-nos-tamanhos-15-20-e-25cm/-/A-7010700422434-br.lc" target="_blank">R$ 89,99</a></p>
+  <p><a href="https://www.camicado.com.br/p/4-tacas-para-cappuccino-wolff-lines-de-vidro-com-fio-de-ouro/-/A-7010705211706-br.lc" target="_blank">R$ 68,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 14 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010704443311/large.jpg" alt="Travessa de Inox Funda Oval 29,5cm Baixela Grande para Servir Porções Saladas Massas Hercules">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/5593/7010704443311/7510709161290/0.jpeg" alt="Travessa de Inox Funda Oval 29,5cm Baixela Grande para Servir Porções Saladas Massas Hercules">
   <h2>Travessa de Inox Funda Oval 29,5cm Baixela Grande para Servir</h2>
-  <p><a href="https://www.camicado.com.br/p/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/-/A-7010704443311-br.lc" target="_blank">R$ 149,99</a></p>
+  <p><a href="https://www.camicado.com.br/p/travessa-de-inox-funda-oval-295cm-baixela-grande-para-servir-porcoes-saladas-massas-hercules/-/A-7010704443311-br.lc" target="_blank">R$27,08</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 15 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010703769758/large.jpg" alt="Forma Alumínio Polido com Tubo MP Alumínio">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/4845/7010703769758/7510707463847/0.jpeg" alt="Forma Alumínio Polido com Tubo MP Alumínio">
   <h2>Forma Alumínio Polido com Tubo MP Alumínio</h2>
-  <p><a href="https://www.camicado.com.br/p/forma-aluminio-polido-com-tubo-mp-aluminio/-/A-7010703769758-br.lc" target="_blank">R$ 79,99</a></p>
+  <p><a href="https://www.camicado.com.br/p/forma-aluminio-polido-com-tubo-mp-aluminio/-/A-7010703769758-br.lc" target="_blank">R$ 27,45</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 16 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010704906163/large.jpg" alt="Travessa Oval com Alça 20cm Porcelana Schmidt Mod Calorama">
-  <h2>Travessa Oval com Alça 20cm Porcelana Schmidt Mod Calorama</h2>
-  <p><a href="https://www.camicado.com.br/p/travessa-oval-com-alca-20cm-porcelana-schmidt-mod-calorama/-/A-7010704906163-br.lc" target="_blank">R$ 69,99</a></p>
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/4298/7010704906164/7510710336664/0.jpeg" alt="Travessa Oval com Alça 23cm Porcelana Schmidt Mod Calorama">
+  <h2>Travessa Oval com Alça 23cm Porcelana Schmidt Mod Calorama</h2>
+  <p><a href="https://www.camicado.com.br/p/travessa-oval-com-alca-23cm-porcelana-schmidt-mod-calorama/-/A-7010704906164-br.lc?sku=7510710336664" target="_blank">R$ 38,00</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 17 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010705616912/large.jpg" alt="Assadeira Forma Alta para Pães Forninho e Forno Elétrico 23x14x5cm Jolly">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/6299/7010705616912/7510712027474/0.jpeg" alt="Assadeira Forma Alta para Pães Forninho e Forno Elétrico 23x14x5cm Jolly">
   <h2>Assadeira Forma Alta para Pães Forninho e Forno Elétrico 23x14x5cm Jolly</h2>
-  <p><a href="https://www.camicado.com.br/p/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/-/A-7010705616912-br.lc" target="_blank">R$ 79,99</a></p>
+  <p><a href="https://www.camicado.com.br/p/assadeira-forma-alta-para-paes-forninho-e-forno-eletrico-a23-x-14-x-5-cm-jolly/-/A-7010705616912-br.lc" target="_blank">R$ 29,90</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 18 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010701312102/large.jpg" alt="Forma de Pudim Panelux Polida Classic 22">
-  <h2>Forma de Pudim Panelux Polida Classic 22</h2>
-  <p><a href="https://www.camicado.com.br/p/forma-de-pudim-panelux-polida-classic-22/-/A-7010701312102-br.lc" target="_blank">R$ 59,99</a></p>
+  <img src="https://img.camicado.com.br/item/101197295/zoom/1.jpg" alt="Cesta Para Pão Home Style Panni ">
+  <h2>Cesta Para Pão Home Style Panni </h2>
+  <p><a href="https://www.camicado.com.br/p/cesta-para-pao-home-style-panni-273-cm/-/A-101197287-br.lc" target="_blank">R$ 89,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 19 -->
 <div class="gift-item">
-  <img src="https://static.camicado.com.br/storage/products/7010705305800/large.jpg" alt="Kit 2 Travessas Inox 20cm Hercules Baixelas Fundas Ovais Servir Saladas Porções">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/5593/7010705305800/7510711375997/0.jpeg" alt="Kit 2 Travessas Inox 20cm Hercules Baixelas Fundas Ovais Servir Saladas Porções">
   <h2>Kit 2 Travessas Inox 20cm Hercules Baixelas Fundas Ovais Servir Saladas Porções</h2>
   <p><a href="https://www.camicado.com.br/p/kit-2-travessas-inox-20cm-hercules-baixelas-fundas-ovais-servir-saladas-porcoes/-/A-7010705305800-br.lc" target="_blank">R$ 159,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -240,54 +272,54 @@
 
 <!-- Presente 20 -->
 <div class="gift-item">
-  <img src="https://img.ibxk.com.br/2018/09/06/06143556594522.jpg" alt="Jogo 6 Xícaras Chá com Pires Cottage Relevo Porcelana Germer">
+  <img src="https://a-static.mlcdn.com.br/800x560/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/lojadaporcelana/00000423e/2bc472935498dafd07dd4660c3fdb058.jpeg" alt="Jogo 6 Xícaras Chá com Pires Cottage Relevo Porcelana Germer">
   <h2>Jogo 6 Xícaras Chá com Pires Cottage Relevo Porcelana Germer</h2>
-  <p><a href="https://www.magazineluiza.com.br/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/p/fd095d4hbh/ud/cjxc/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/jogo-6-xicaras-cha-com-pires-cottage-relevo-porcelana-germer-porcelanas-germer/p/fd095d4hbh/ud/cjxc/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">R$248,70</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 21 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/mavaular/204440426/50326ec3c4a4e6e0c71fdb1b3b248e7b.jpg" alt="Rack para TV até 75 polegadas 100% MDF Ripado 2 Portas Logan Mavaular">
+  <img src="https://a-static.mlcdn.com.br/800x560/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/madeiramadeira-openapi/823022/5208a7644116d978183d0be1d380bcc9.jpeg" alt="Rack para TV até 75 polegadas 100% MDF Ripado 2 Portas Logan Mavaular">
   <h2>Rack para TV até 75 polegadas 100% MDF Ripado 2 Portas Logan Mavaular</h2>
-  <p><a href="https://www.magazineluiza.com.br/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/p/gjjd53j363/mo/racm/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/rack-para-tv-ate-75-polegadas-100-mdf-ripado-2-portas-logan-mavaular/p/gjjd53j363/mo/racm/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">R$649,98</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 22 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/sofa-2-lugares-gibran-linho-bronze-viero-moveis/fvgstore/305307/bd8ee8ecb4e423aa3153a6c4b8f82571.jpg" alt="Sofá 2 Lugares Gibran Linho Bronze Viero Móveis">
+  <img src="https://a-static.mlcdn.com.br/800x560/sofa-2-lugares-gibran-linho-bronze-viero-moveis/panoramamoveis/86450/c48a889e187acd122d55a100389c263f.jpeg" alt="Sofá 2 Lugares Gibran Linho Bronze Viero Móveis">
   <h2>Sofá 2 Lugares Gibran Linho Bronze Viero Móveis</h2>
-  <p><a href="https://www.magazineluiza.com.br/sofa-2-lugares-gibran-linho-bronze-viero-moveis/p/fgk9210a88/mo/esto/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/sofa-2-lugares-gibran-linho-bronze-viero-moveis/p/fgk9210a88/mo/esto/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">R$ 939,90</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 23 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt/a_madeirados/458063/09bf17b1d14d9a3a5d567e91406bf1db.jpg" alt="Cooktop Itatiaia Essencial 5 Bocas Vidro Preto Bivolt">
+  <img src="https://a-static.mlcdn.com.br/800x560/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/continentalcenter/040846151025460011/323fa9358ae21b56b999a18e1de85adc.jpeg" alt="Cooktop Itatiaia Essencial 5 Bocas Vidro Preto Bivolt">
   <h2>Cooktop Itatiaia Essencial 5 Bocas Vidro Preto Bivolt</h2>
-  <p><a href="https://www.magazineluiza.com.br/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/p/ja6c0e5e64/ed/ck4b/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/cooktop-itatiaia-essencial-5-bocas-vidro-preto-bivolt-3700000193/p/ja6c0e5e64/ed/ck4b/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">R$ 419,00</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 24 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/forno-eletrico-50-litros-philco-pfe52p-preto-220v/lojadomeu/preto-pfe52p-220v/7384217a16f6bf6586c5480d5bb89ca0.jpg" alt="Forno Elétrico 50 Litros Philco PFE52P Preto 220V">
+  <img src="https://a-static.mlcdn.com.br/800x560/forno-eletrico-50-litros-philco-pfe52p-preto-220v/climario/41056/872370682a4febe5bfe70ef8c360b780.jpeg" alt="Forno Elétrico 50 Litros Philco PFE52P Preto 220V">
   <h2>Forno Elétrico 50 Litros Philco PFE52P Preto 220V</h2>
-  <p><a href="https://www.magazineluiza.com.br/forno-eletrico-50-litros-philco-pfe52p-preto-220v/p/ehdjg7fe4b/ed/frne/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/forno-eletrico-50-litros-philco-pfe52p-preto-220v/p/ehdjg7fe4b/ed/frne/?partner_id=64068&utm_source=pdp&utm_medium=share" target="_blank">R$469,00</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 25 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/kit-churrasco-tramontina-10239753-3-pecas/lojaferro/kit-churrasco-tramontina-10239753-3-pecas/8163b0a0d0e7a9f192c6ec2bc029db8b.jpg" alt="Kit Churrasco Tramontina 10239753 3 Peças">
+  <img src="https://a-static.mlcdn.com.br/800x560/kit-churrasco-tramontina-10239753-3-pecas/magazineluiza/238299100/e3bd88e1ab6a91744cf0cc78e50d9ce8.jpg" alt="Kit Churrasco Tramontina 10239753 3 Peças">
   <h2>Kit Churrasco Tramontina 10239753 3 Peças</h2>
-  <p><a href="https://www.magazineluiza.com.br/kit-churrasco-tramontina-10239753-3-pecas/p/238299100/ud/cjxu/" target="_blank">Consultar preço</a></p>
+  <p><a href="https://www.magazineluiza.com.br/kit-churrasco-tramontina-10239753-3-pecas/p/238299100/ud/cjxu/" target="_blank">R$ 99,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 <!-- Presente 26 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/maquina-de-pipoca/..." alt="Máquina Elétrica de Pipoca">
+  <img src="https://a-static.mlcdn.com.br/800x560/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/olistsp/ospi8qr2pcnhozhm/034bf9d9f8d6a3cd34a3b7f2803386cb.jpeg" alt="Máquina Elétrica de Pipoca">
   <h2>Máquina Elétrica de Pipoca</h2>
   <p><a href="https://www.magazineluiza.com.br/maquina-eletrica-preparo-pipocas-saudaveis-rapidas-e-sem-guiro/p/cffe5c9bg2/ep/pipo/" target="_blank">R$ 291,60</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -295,15 +327,15 @@
 
 <!-- Presente 27 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/panela-de-pressao-eos/..." alt="Panela de Pressão Elétrica EOS Multicooker 5 L">
+  <img src="https://imgmarketplace.lojasrenner.com.br/20000/6223/7010705187549/7510710934322/0.jpeg?ims=fit-in/x566" alt="Kit 2 Trouxinhas Murano Laradore - Transparente e Pó Dourado">
   <h2>Panela de Pressão Elétrica EOS Multicooker 5 L Titanium</h2>
-  <p><a href="https://www.magazineluiza.com.br/panela-de-pressao-eletrica-eos-multicooker-5l-titanium-epp50mt-110v/p/ba602caj05/ep/eppe/" target="_blank">R$ 376,53</a></p>
+  <p><a href="https://www.camicado.com.br/p/kit-2-trouxinhas-murano-laradore-transparente-e-po-dourado/-/A-7010705187549-br.lc" target="_blank">R$199,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 28 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/liquidificador-mondial/..." alt="Liquidificador Mondial Turbo Power L‑99 FB">
+  <img src="https://a-static.mlcdn.com.br/800x560/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/magazineluiza/021756700/02caa133bda5fa19e21129542c937547.jpg" alt="Liquidificador Mondial Turbo Power L‑99 FB">
   <h2>Liquidificador Mondial Turbo Power L‑99 FB</h2>
   <p><a href="https://www.magazineluiza.com.br/liquidificador-mondial-turbo-power-l-99-fb-preto-com-filtro-3-velocidades-550w/p/021756700/ep/lqac/" target="_blank">R$ 127,90</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -311,7 +343,7 @@
 
 <!-- Presente 29 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/jogo-panelas-brinox/..." alt="Jogo de Panelas Brinox Ceramic Life Gris 5 peças">
+  <img src="https://a-static.mlcdn.com.br/800x560/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/maxxmercadinho/cjcesp653/4ff83eb3f1dd61d1006ffa05a505983b.jpeg" alt="Jogo de Panelas Brinox Ceramic Life Gris 5 peças">
   <h2>Jogo de Panelas Brinox Ceramic Life Gris – 5 peças</h2>
   <p><a href="https://www.magazineluiza.com.br/jogo-de-panelas-brinox-com-revestimento-antiaderente-ceramica-5-pecas-ceramic-life-gris-cinza/p/af066018c4/ud/cjpn/" target="_blank">R$ 599,88</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -319,7 +351,7 @@
 
 <!-- Presente 30 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/jogo-copos-diamond/..." alt="Jogo de Copos Diamond 6 peças">
+  <img src="https://a-static.mlcdn.com.br/800x560/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/cozinhashow/cv-318-copo/cbf7cba02e1e637f26761cd874832fac.jpeg" alt="Jogo de Copos Diamond 6 peças">
   <h2>Jogo de Copos Diamond – 6 peças</h2>
   <p><a href="https://www.magazineluiza.com.br/jogo-de-copo-de-vidro-diamante-para-agua-suco-bebidas-conjunto-de-6-copos-resistente-vidro-grosso-diamond-linha-premium-400ml-importado/p/fh6d383jd3/ud/coas/" target="_blank">R$ 45,66</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -327,7 +359,7 @@
 
 <!-- Presente 31 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/panela-pressao-electrolux/..." alt="Panela de Pressão Elétrica Electrolux PCE20 5 L">
+  <img src="https://a-static.mlcdn.com.br/800x560/panela-de-pressao-eletrica-electrolux-pce20-900w-5l-timer-controle-de-temperatura/magazineluiza/023328400/fd60395bd19469f9e9cefe2827bb2c64.jpg" alt="Panela de Pressão Elétrica Electrolux PCE20 5 L">
   <h2>Panela de Pressão Elétrica Electrolux PCE20 5 L</h2>
   <p><a href="https://www.magazineluiza.com.br/panela-de-pressao-eletrica-electrolux-pce20-900w-5l-timer-controle-de-temperatura/p/023328400/ep/eppe/" target="_blank">R$ 389,90</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -335,7 +367,7 @@
 
 <!-- Presente 32 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/air-fryer-mondial/..." alt="Air Fryer Mondial Oven AFON 12 L">
+  <img src="https://a-static.mlcdn.com.br/800x560/air-fryer-mondial-forno-oven-afon-12l-bi-preta-12l/magazineluiza/237219400/a3445e6e8b6f4199b925f2c6a2040e0b.jpg" alt="Air Fryer Mondial Oven AFON 12 L">
   <h2>Air Fryer Mondial Oven AFON 12 L</h2>
   <p><a href="https://www.magazineluiza.com.br/air-fryer-mondial-forno-oven-afon-12l-bi-preta-12l/p/237219400/ep/efso/" target="_blank">R$ 569,05</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -343,22 +375,22 @@
 
 <!-- Presente 33 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/aparelho-jantar-tramontina/..." alt="Aparelho Jantar Tramontina 6 Peças">
+  <img src="https://a-static.mlcdn.com.br/800x560/aparelho-jogo-de-jantar-pratos-porcelana-branco-tramontina-6-pecas/magazinegeraiscomercio/ut3133/f3aa1e2f2075e5f1dcce5d3bb8b8394d.jpeg" alt="Aparelho Jantar Tramontina 6 Peças">
   <h2>Aparelho de Jantar Tramontina 6 peças</h2>
   <p><a href="https://www.magazineluiza.com.br/aparelho-jogo-de-jantar-pratos-porcelana-branco-tramontina-6-pecas/p/edc3aga9hf/ud/apja/" target="_blank">R$ 121,79</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 <!-- Presente 34 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/batedeira-britania-bbpe01/..." alt="Batedeira Planetária Britânia BBPE01 4 L">
-  <h2>Batedeira Planetária Britânia BBPE01 12 Velocidades 4 L</h2>
-  <p><a href="https://www.magazineluiza.com.br/batedeira-planetaria-britania-bbpe01-12-velocidades-4l-500w/p/chg9451egc/ep/bapl/" target="_blank">R$ 436,50 (Pix)</a></p>
+  <img src="https://a-static.mlcdn.com.br/800x560/batedeira-planetaria-mondial-branco-e-inox-700w-premium-12-velocidades/magazineluiza/021259900/9e6c2fee9b2d132a407c236ee27cf256.jpg" alt="Batedeira Planetária Britânia BBPE01 4 L">
+  <h2>Batedeira Planetária Mondial Branco e Inox 700W</h2>
+  <p><a href="https://www.magazineluiza.com.br/batedeira-planetaria-mondial-branco-e-inox-700w-premium-12-velocidades/p/021259900/ep/btdc/" target="_blank">R$ 436,50 (Pix)</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
 <!-- Presente 35 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/copos-quadrados-ame/..." alt="Copo de Vidro Quadrado Ame Cozinha 6 pçs">
+  <img src="https://a-static.mlcdn.com.br/800x560/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/amecozinha/copovidroquadrado/f9538d557fce45318b406b94b84af83a.jpeg" alt="Copo de Vidro Quadrado Ame Cozinha 6 pçs">
   <h2>Copo de Vidro Quadrado Ame Cozinha – Jogo 6 pçs</h2>
   <p><a href="https://www.magazineluiza.com.br/copo-de-vidro-quadrado-copos-vidro-jogo-copo-jogo-de-copo-de-vidro-6p-ame-cozinha/p/bgkkc7hbaj/ud/coco/" target="_blank">R$ 159,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -366,7 +398,7 @@
 
 <!-- Presente 36 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/kit-americano-souplats/..." alt="Kit Jogo Americano 12 pç Souplats Mr Dias">
+  <img src="https://a-static.mlcdn.com.br/90x90/kit-jogo-americano-12pc-souplats-mesa-posta-guardanapo-supla-mr-dias/mrdias10/15953541448/fc03163a7ad354de52d0a6f811fa2fab.jpeg" alt="Kit Jogo Americano 12 pç Souplats Mr Dias">
   <h2>Kit Jogo Americano 12 peças Souplats Mr Dias</h2>
   <p><a href="https://www.magazineluiza.com.br/kit-jogo-americano-12pc-souplats-mesa-posta-guardanapo-supla-mr-dias/p/jegd3dd0bb/ud/joam/" target="_blank">R$ 113,91 (Pix)</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -374,7 +406,7 @@
 
 <!-- Presente 37 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/tabua-passar-smartaco/..." alt="Tábua de Passar Roupa Portátil Dobrável SmartAço">
+  <img src="https://a-static.mlcdn.com.br/800x560/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/itacomm/tabuademesa1/0de0f2cc660b0f4a026627182d5bee16.jpeg" alt="Tábua de Passar Roupa Portátil Dobrável SmartAço">
   <h2>Tábua de Passar Roupa Portátil Dobrável SmartAço</h2>
   <p><a href="https://www.magazineluiza.com.br/tabua-mesa-passar-roupa-portatil-dobravel-cama-c-porta-ferro-marca-smartaco-smart-aco/p/ah4645a557/ud/udll/" target="_blank">R$ 74,96 (Pix)</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
@@ -382,23 +414,23 @@
 
 <!-- Presente 38 -->
 <div class="gift-item">
-  <img src="https://images.casasbahia.com.br/55066928/..." alt="Smart TV LED 50” Ultra HD 4K Philips 50PUG7019">
+  <img src="https://imgs.casasbahia.com.br/55066928/1g.jpg?imwidth=96" alt="Smart TV LED 50” Ultra HD 4K Philips 50PUG7019">
   <h2>Smart TV LED 50” Ultra HD 4K Philips 50PUG7019</h2>
-  <p><a href="https://www.casasbahia.com.br/smart-tv-led-50-ultra-hd-4k-philips-50pug7019-com-google-tv-comando-de-voz-wi-fi-entradas-hdmi-e-usb/p/55066928" target="_blank">R$ Consultar</a></p>
+  <p><a href="https://www.casasbahia.com.br/smart-tv-led-50-ultra-hd-4k-philips-50pug7019-com-google-tv-comando-de-voz-wi-fi-entradas-hdmi-e-usb/p/55066928" target="_blank">R$ 1946,00</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 <!-- Presente 39 -->
 <div class="gift-item">
-  <img src="https://images-na.ssl-images-amazon.com/images/I/B0DBMX3P7P.jpg" alt="Vassoura Cabo Rodo Duplo Grande">
+  <img src="https://m.media-amazon.com/images/I/51yJzRNqvSL._AC_SX522_.jpg" alt="Vassoura Cabo Rodo Duplo Grande">
   <h2>Vassoura Cabo Rodo Duplo Grande</h2>
-  <p><a href="https://www.amazon.com.br/Vassoura-Cabo-Rodo-Duplo-Grande/dp/B0DBMX3P7P/" target="_blank">R$ Consultar</a></p>
+  <p><a href="https://www.amazon.com.br/Vassoura-Cabo-Rodo-Duplo-Grande/dp/B0DBMX3P7P/" target="_blank">R$45,99</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 <!-- Presente 40 -->
 <div class="gift-item">
-  <img src="https://a-static.mlcdn.com.br/1500x1500/toalhas-teka-dry/..." alt="Jogo de Toalhas 4 Peças Teka Dry 100% Algodão">
+  <img src="https://a-static.mlcdn.com.br/800x560/jogo-de-toalhas-4-pecas-teka-dry-100-algodao/santtoscasadecoracao/bra73790/9072cf09b830835148d798330e9b8a90.jpeg" alt="Jogo de Toalhas 4 Peças Teka Dry 100% Algodão">
   <h2>Jogo de Toalhas 4 peças Teka Dry Algodão</h2>
-  <p><a href="https://www.magazineluiza.com.br/jogo-de-toalhas-4-pecas-teka-dry-100-algodao/p/cge71c5cbj/cm/joto/" target="_blank">R$ Consultar</a></p>
+  <p><a href="https://www.magazineluiza.com.br/jogo-de-toalhas-4-pecas-teka-dry-100-algodao/p/cge71c5cbj/cm/joto/" target="_blank">R$ 94,91</a></p>
   <p class="pix">ou envie para o Pix do casal: <strong>31975420407</strong></p>
 </div>
 
